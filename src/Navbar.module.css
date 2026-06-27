@@ -1,0 +1,37 @@
+.navbarStandard {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 15px 0;
+}
+.navbarStandard .nav-link { color: #0f172a !important; font-weight: 600; }
+.brandText { font-weight: 700; color: #0f172a; margin-left: 10px; }
+.logoCustom { width: 40px; height: 40px; border-radius: 50%; }
+.signUpBtn { background-color: #0284c7 !important; color: white !important; font-weight: 600; }
+
+.userGreeting {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    padding: 6px 12px;
+    background: #f0f9ff;
+    border-radius: 50px;
+    border: 1px solid #bae6fd;
+}
+
+.userGreeting i {
+    margin-right: 6px;
+    color: #0284c7;
+}
+
+.logoutBtn {
+    background-color: transparent !important;
+    color: #e74c3c !important;
+    border: 2px solid #e74c3c !important;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.logoutBtn:hover {
+    background-color: #e74c3c !important;
+    color: #fff !important;
+}

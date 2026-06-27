@@ -1,0 +1,63 @@
+.themeToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 86px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+  background: rgba(241, 245, 249, 0.85);
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.25s ease;
+  margin: 0 10px;
+}
+
+.themeToggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.14);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e0f2fe;
+}
+
+.label {
+  line-height: 1;
+}
+
+:global([data-theme="dark"]) .themeToggle {
+  background: rgba(15, 23, 42, 0.65);
+  border-color: rgba(51, 65, 85, 0.9);
+  color: #f8fafc;
+  box-shadow: none;
+}
+
+:global([data-theme="dark"]) .icon {
+  background: #1e293b;
+}
+
+@media (max-width: 576px) {
+  .themeToggle {
+    min-width: 42px;
+    width: 42px;
+    padding: 0;
+    justify-content: center;
+    margin: 8px 0;
+  }
+
+  .label {
+    display: none;
+  }
+}

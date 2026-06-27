@@ -1,0 +1,288 @@
+/* ── Journal Cover ── */
+.pageWrapper { min-height: 100vh; background: #fdf9f3; }
+
+.journalCover {
+  position: relative;
+  background: #1a1a2e;
+  padding: 70px 20px 60px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Notebook lines decoration */
+.journalLines {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 39px,
+    rgba(255,255,255,0.04) 39px,
+    rgba(255,255,255,0.04) 40px
+  );
+  pointer-events: none;
+}
+
+/* Red margin line */
+.journalCover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 2px;
+  height: 100%;
+  background: rgba(220,38,38,0.3);
+}
+
+.coverContent { position: relative; z-index: 2; }
+
+.journalTag {
+  display: inline-block;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.coverTitle {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+  /* handwritten-feel with slight italic */
+  font-style: italic;
+}
+
+.coverSub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.6);
+  max-width: 520px;
+  margin: 0 auto 24px;
+  line-height: 1.65;
+}
+
+.coverDivider {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.25);
+  font-size: 10px;
+}
+
+/* ── Filter Bar ── */
+.filterBar {
+  background: #fff;
+  border-bottom: 1px solid #ede8df;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.filterScroll {
+  display: flex;
+  gap: 6px;
+  padding: 12px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.filterScroll::-webkit-scrollbar { display: none; }
+
+.catBtn {
+  flex-shrink: 0;
+  background: transparent;
+  border: 2px solid #e7e0d5;
+  border-radius: 50px;
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.catBtn:hover { border-color: #92400e; color: #92400e; }
+
+.catBtnActive {
+  background: #92400e !important;
+  border-color: #92400e !important;
+  color: #fff !important;
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+/* ── Blog Card ── */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  border: 1px solid #ede8df;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Notebook feel: slight cream background on body */
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+}
+
+/* Featured card spans 2 columns */
+.cardFeatured {
+  grid-column: span 2;
+}
+
+.cardFeatured .cardImage {
+  height: 320px;
+}
+
+@media (max-width: 768px) {
+  .cardFeatured { grid-column: span 1; }
+  .cardFeatured .cardImage { height: 220px; }
+}
+
+/* ── Card Image ── */
+.cardImage {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .cardImage img { transform: scale(1.06); }
+
+.cardImageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 55%);
+}
+
+.categoryBadge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+
+.featuredBadge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(251,191,36,0.9);
+  color: #78350f;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 50px;
+}
+
+/* ── Card Body ── */
+.cardBody {
+  padding: 20px 24px 22px;
+  /* Notebook-style ruled lines background */
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 27px,
+    #f5ede0 27px,
+    #f5ede0 28px
+  );
+  background-size: 100% 28px;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.metaAuthor, .metaDate, .metaRead {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.metaAuthor i, .metaRead i { margin-right: 4px; }
+
+.metaDot { color: #d1d5db; font-size: 10px; }
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1c1917;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+.cardExcerpt {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.readMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #92400e;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+  padding-bottom: 2px;
+}
+
+.readMoreBtn:hover { border-color: #92400e; color: #92400e; }
+
+/* ── Spiral Binding ── */
+.spiralBinding {
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  pointer-events: none;
+}
+
+.spiralRing {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #d6cfc5;
+  border-radius: 50%;
+  background: #fdf9f3;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .coverTitle { font-size: 2rem; }
+  .grid { grid-template-columns: 1fr; }
+}

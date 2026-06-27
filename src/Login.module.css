@@ -1,0 +1,495 @@
+/* الأقسام السابقة من ملف الـ CSS (Passport Container, Pages, Inputs) كما هي، أضيفيها في البداية */
+/* ... (أضيفي كل كود الـ CSS السابق هنا حتى لا تختفي زخرفة الجواز) ... */
+
+/* الحاوية الرئيسية لتوسط الفورم في الشاشة */
+.passport-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #1a1a2e; /* خلفية داكنة لإبراز الجواز */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* جسم جواز السفر المفتوح */
+.passport-book {
+  display: flex;
+  width: 800px;
+  height: 480px;
+  background: #112d4e; /* لون جلد الجواز الخارجي */
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
+              inset 0 0 15px rgba(255, 255, 255, 0.1);
+  position: relative;
+  gap: 10px;
+}
+
+
+.passport-page {
+  flex: 1;
+  border-radius: 6px;
+  padding: 25px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+
+  /* --- التعديل الجديد لزيادة وضوح وبروز الـ Texture --- */
+  background-color: #f9f7f1; 
+  background-image: 
+    /* شبكة خشنة بارزة (Noise Grain Effect) */
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.02) 0px, rgba(0, 0, 0, 0.02) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.02) 0px, rgba(0, 0, 0, 0.02) 1px, transparent 1px, transparent 3px),
+    /* تدرج الورق القديم */
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(220, 215, 201, 0.4));
+}
+
+
+/* الفاصل اللي في النص بين الصفحتين كأنه خياطة الكتاب */
+.passport-book::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: calc(100% - 30px);
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 5;
+  box-shadow: 1px 0 2px rgba(255, 255, 255, 0.1);
+}
+
+/* الصفحة الشمال: تفاصيل البيانات الشخصية */
+.passport-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed #b8b5a8;
+  padding-bottom: 8px;
+  color: #3f3d36;
+}
+
+.passport-header h4 {
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.passport-code {
+  font-size: 12px;
+  font-weight: bold;
+  color: #8b0000;
+}
+
+.passport-profile-sec {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.passport-photo {
+  width: 120px;
+  height: 150px;
+  background: #e3e0d5;
+  border: 3px double #9e9b8f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+}
+
+.passport-ghost-data {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* خطوط وهمية كأنها بيانات مطبوعة */
+.line-bar {
+  height: 8px;
+  background: #e0dbcd;
+  border-radius: 4px;
+}
+.line-bar.short { width: 50%; }
+.line-bar.medium { width: 75%; }
+.line-bar.long { width: 100%; }
+
+/* الكود المشفر أسفل الجواز */
+.passport-footer-zone {
+  font-family: monospace;
+  font-size: 11px;
+  color: #706e64;
+  white-space: nowrap;
+  border-top: 1px solid #e0dbcd;
+  padding-top: 10px;
+  letter-spacing: 1px;
+}
+
+/* الصفحة اليمين: الفورم والتأشيرة */
+.page-right h3 {
+  margin: 0 0 20px 0;
+  color: #2b2d42;
+  text-align: center;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #dcd7c9;
+  padding-bottom: 10px;
+}
+
+/* العلامة المائية في الخلفية */
+.watermark {
+  position: absolute;
+  font-size: 80px;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.03);
+  transform: rotate(-30deg);
+  top: 35%;
+  left: 15%;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* تصميم خانات الإدخال داخل الجواز */
+.input-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.input-field-group label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #6c757d;
+  letter-spacing: 0.5px;
+}
+
+.input-field-group input {
+  padding: 10px 12px;
+  border: none;
+  border-bottom: 2px solid #b8b5a8;
+  background: transparent;
+  font-size: 15px;
+  color: #2b2d42;
+  transition: border-color 0.3s ease;
+}
+
+.input-field-group input:focus {
+  outline: none;
+  border-bottom-color: #112d4e;
+}
+
+/* زرار تقديم التأشيرة */
+.submit-visa-btn {
+  background: #d63447;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background 0.3s ease;
+  margin-top: auto;
+}
+
+.submit-visa-btn:hover {
+  background: #b82535;
+}
+
+/* ========================================= */
+/* تصميم الختم النجمي المعقد (The Star Stamp) */
+/* ========================================= */
+
+.visa-stamp-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+  width: 250px; /* حجم الختم من الصورة */
+  height: 250px;
+  /* الأنيميشن الجديد: يظهر وينزل بلفة خفيفة */
+  animation: stamp-apply 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.visa-stamp-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* الشكل الدائري باللون الأزرق المتدرج */
+  background: radial-gradient(circle, #01579b 40%, #0277bd 60%, transparent 61%);
+  /* الحافة الذهبية الدائرية */
+  border: 6px solid #ffca28;
+  border-radius: 50%;
+  padding: 15px;
+  box-sizing: border-box;
+  color: #ffca28; /* لون النص الافتراضي الذهبي */
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  transform: rotate(-15deg); /* لفة الختم من الصورة */
+}
+
+/* تنسيق الـ SVG للنصوص المقوسة */
+.arched-text-top,
+.arched-text-bottom {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  letter-spacing: 2px;
+  fill: #ffca28; /* لون النص الذهبي */
+}
+
+.arched-text-top {
+  top: 0;
+}
+
+.arched-text-bottom {
+  bottom: 0;
+  font-size: 14px;
+}
+
+/* النجمة الذهبية المركزية */
+.visa-star-central {
+  position: relative;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.star-icon {
+  font-size: 40px;
+  color: #ffca28;
+}
+
+/* النص الأوسط (ACCEPTED / DATE) */
+.visa-accepted-box {
+  text-align: center;
+  margin-top: -5px;
+}
+
+.accepted-text {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.date-text {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: rgba(255, 202, 40, 0.8);
+}
+
+/* حركة نزول الختم (Stamp Animation) */
+@keyframes stamp-apply {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(5) rotate(-45deg);
+  }
+  70% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(0.9) rotate(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(-15deg);
+  }
+}
+
+/* متجاوب مع الشاشات الصغيرة (تعديل طفيف) */
+@media (max-width: 850px) {
+  /* ... (نفس كود المتجاوب السابق) ... */
+  .visa-stamp-container {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+
+/* تنسيق منطقة التواريخ داخل الجواز */
+.passport-dates-zone {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding: 8px 0;
+  border-top: 1px dashed #e0dbcd;
+  border-bottom: 1px dashed #e0dbcd;
+}
+
+.date-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.date-label {
+  font-size: 9px;
+  font-weight: bold;
+  color: #8b8981;
+  letter-spacing: 0.5px;
+}
+
+.date-value {
+  font-size: 13px;
+  font-weight: bold;
+  color: #2b2d42;
+  font-family: 'Courier New', Courier, monospace; /* خط يشبه الآلة الكاتبة الرسمية */
+}
+
+/* ========================================= */
+/* أنيميشن المطب الهوائي (Turbulence Shake) */
+/* ========================================= */
+
+.turbulence {
+  animation: air-pocket-shake 0.4s ease-in-out;
+  border: 2px solid #d63447 !important; /* بيقلب إطار الجواز الخارجي أحمر تحذيري خفيف أثناء الهزة */
+}
+
+@keyframes air-pocket-shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  15% { transform: translate(-8px, 4px) rotate(-1.5deg); }
+  30% { transform: translate(6px, -4px) rotate(1.5deg); }
+  45% { transform: translate(-6px, 2px) rotate(-1deg); }
+  60% { transform: translate(5px, 3px) rotate(1deg); }
+  75% { transform: translate(-4px, -2px) rotate(-0.5deg); }
+  90% { transform: translate(2px, 1px) rotate(0.2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* ── Dark Mode: keep the passport paper readable ───────── */
+:global(html[data-theme="dark"]) .passport-container {
+  background:
+    radial-gradient(circle at top, rgba(14, 165, 233, 0.12), transparent 36%),
+    #0f172a;
+}
+
+:global(html[data-theme="dark"]) .passport-book {
+  background: #06152b;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.65),
+    inset 0 0 18px rgba(56, 189, 248, 0.08);
+}
+
+:global(html[data-theme="dark"]) .passport-page {
+  background-color: #f4f0e6 !important;
+  color: #2b2d42 !important;
+}
+
+:global(html[data-theme="dark"]) .passport-page h3,
+:global(html[data-theme="dark"]) .passport-page h4,
+:global(html[data-theme="dark"]) .passport-header,
+:global(html[data-theme="dark"]) .date-value {
+  color: #2b2d42 !important;
+}
+
+:global(html[data-theme="dark"]) .passport-code {
+  color: #8b0000 !important;
+}
+
+:global(html[data-theme="dark"]) .input-field-group label {
+  color: #6c757d !important;
+}
+
+:global(html[data-theme="dark"]) .input-field-group input {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid #9e9b8f !important;
+  color: #2b2d42 !important;
+}
+
+:global(html[data-theme="dark"]) .input-field-group input::placeholder {
+  color: #8b8981 !important;
+}
+
+:global(html[data-theme="dark"]) .input-field-group input:focus {
+  border-bottom-color: #112d4e !important;
+}
+
+/* ── Responsive Layout ─────────────────────────────────── */
+@media (max-width: 900px) {
+  .passport-container {
+    align-items: flex-start;
+    padding: 24px 14px;
+  }
+
+  .passport-book {
+    width: 100%;
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .passport-book {
+    flex-direction: column;
+    height: auto;
+    max-width: 460px;
+    padding: 12px;
+  }
+
+  .passport-book::before {
+    display: none;
+  }
+
+  .passport-page {
+    min-height: 420px;
+    padding: 20px;
+  }
+
+  .passport-profile-sec {
+    gap: 14px;
+  }
+
+  .passport-photo {
+    width: 96px;
+    height: 120px;
+    font-size: 36px;
+  }
+
+  .passport-dates-zone {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .passport-footer-zone {
+    white-space: normal;
+    word-break: break-all;
+  }
+}
+
+@media (max-width: 480px) {
+  .passport-container {
+    padding: 16px 10px;
+  }
+
+  .passport-page {
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .passport-profile-sec {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page-right h3 {
+    font-size: 1rem;
+  }
+
+  .visa-stamp-container {
+    width: 170px;
+    height: 170px;
+  }
+}

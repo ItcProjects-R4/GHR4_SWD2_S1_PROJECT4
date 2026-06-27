@@ -1,0 +1,958 @@
+/* ── Kiosk Wrapper ── */
+.kioskWrapper {
+  min-height: 100vh;
+  background: #0a0a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ── Airport Header ── */
+.kioskHeader {
+  width: 100%;
+  background: #050510;
+  border-bottom: 2px solid rgba(0,180,255,0.2);
+  position: relative;
+  overflow: hidden;
+  padding: 40px 20px 30px;
+  text-align: center;
+}
+
+.headerGlow {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(0,180,255,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.headerContent { position: relative; z-index: 2; }
+
+.headerIcon { font-size: 40px; margin-bottom: 8px; }
+
+.headerTitle {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #00c8ff;
+  letter-spacing: 6px;
+  margin: 0 0 6px;
+  text-shadow: 0 0 20px rgba(0,200,255,0.5);
+  /* Digital display font feel */
+  font-variant: small-caps;
+}
+
+.headerSub {
+  font-size: 12px;
+  color: rgba(0,200,255,0.45);
+  letter-spacing: 3px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Scrolling departures board */
+.departureBoard {
+  margin-top: 24px;
+  background: #000;
+  border: 1px solid rgba(255,200,0,0.25);
+  border-radius: 4px;
+  padding: 8px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.departureBoard span {
+  display: inline-block;
+  color: #ffd700;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  animation: scrollBoard 25s linear infinite;
+}
+
+@keyframes scrollBoard {
+  from { transform: translateX(100vw); }
+  to   { transform: translateX(-100%); }
+}
+
+/* ── Kiosk Screen ── */
+.kioskScreen {
+  width: 100%;
+  max-width: 700px;
+  margin: 40px 20px;
+  background: #0d1117;
+  border: 1px solid rgba(0,200,255,0.2);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow:
+    0 0 40px rgba(0,200,255,0.08),
+    0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* ── Tab Row ── */
+.tabRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.tabBtn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.25s;
+}
+
+.tabBtn:hover { color: rgba(255,255,255,0.7); }
+
+.tabBtnActive {
+  background: rgba(0,200,255,0.15) !important;
+  color: #00c8ff !important;
+  border: 1px solid rgba(0,200,255,0.3);
+}
+
+/* ── Form Grid ── */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.fieldFull {
+  grid-column: span 2;
+}
+
+/* ── Field Group ── */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldGroup label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #00c8ff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.fieldGroup input,
+.fieldGroup select {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #e2e8f0;
+  outline: none;
+  transition: border-color 0.25s, background 0.25s;
+  /* Custom color for date inputs */
+  color-scheme: dark;
+}
+
+.fieldGroup input::placeholder { color: rgba(255,255,255,0.25); }
+
+.fieldGroup input:focus,
+.fieldGroup select:focus {
+  border-color: rgba(0,200,255,0.5);
+  background: rgba(0,200,255,0.06);
+}
+
+.fieldGroup select option {
+  background: #0d1117;
+  color: #e2e8f0;
+}
+
+/* ── Submit Button ── */
+.submitBtn {
+  width: 100%;
+  background: linear-gradient(135deg, #0284c7, #00c8ff);
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: opacity 0.25s, transform 0.2s;
+  box-shadow: 0 4px 20px rgba(0,200,255,0.3);
+}
+
+.submitBtn:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+}
+
+.submitBtn i { margin-right: 8px; }
+
+/* ── Auth Gate ── */
+.authGateCard {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background:
+    radial-gradient(circle at top, rgba(0, 200, 255, 0.12), transparent 42%),
+    rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(0, 200, 255, 0.18);
+  border-radius: 22px;
+  padding: 28px 22px;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.25);
+  animation: authGateIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.authGateCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 38%);
+  pointer-events: none;
+}
+
+.authGateCardAttention {
+  animation: authGateShake 0.45s ease, authGateIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.authGateIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  background: linear-gradient(135deg, #0284c7, #00c8ff);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 12px 28px rgba(0, 200, 255, 0.26);
+}
+
+.authGateCard h3 {
+  position: relative;
+  color: #e2e8f0;
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin: 0 0 8px;
+}
+
+.authGateCard p {
+  position: relative;
+  max-width: 430px;
+  margin: 0 auto 20px;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.authGateActions {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.authGatePrimary,
+.authGateSecondary {
+  min-width: 124px;
+  border-radius: 999px;
+  padding: 11px 20px;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+}
+
+.authGatePrimary {
+  background: linear-gradient(135deg, #0284c7, #00c8ff);
+  color: #ffffff;
+}
+
+.authGateSecondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.authGatePrimary:hover,
+.authGateSecondary:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+  color: #ffffff;
+}
+
+@keyframes authGateIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes authGateShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+
+/* ── Loading Screen ── */
+.loadingWrapper {
+  min-height: 100vh;
+  background: #0a0a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.loadingCard {
+  background: #0d1117;
+  border: 1px solid rgba(0,200,255,0.2);
+  border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 0 40px rgba(0,200,255,0.08);
+}
+
+.loadingPlane {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: block;
+  animation: flyAcross 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes flyAcross {
+  from { transform: translateX(-20px) rotate(-5deg); }
+  to   { transform: translateX(20px) rotate(5deg); }
+}
+
+.loadingCard h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  margin-bottom: 8px;
+}
+
+.loadingCard p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 24px;
+}
+
+.loadingBar {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loadingBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #0284c7, #00c8ff);
+  border-radius: 2px;
+  animation: loadProgress 2s ease-in-out forwards;
+}
+
+@keyframes loadProgress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* ── Payment Screen ── */
+.paymentWrapper {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(0, 200, 255, 0.12), transparent 34%),
+    #0a0a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.paymentCard {
+  width: 100%;
+  max-width: 920px;
+  background: #0d1117;
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow:
+    0 0 42px rgba(0, 200, 255, 0.08),
+    0 24px 70px rgba(0, 0, 0, 0.55);
+  animation: ticketDrop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.12) forwards;
+}
+
+.paymentHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.backToBookingBtn {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backToBookingBtn:hover {
+  background: rgba(0, 200, 255, 0.12);
+  color: #00c8ff;
+  border-color: rgba(0, 200, 255, 0.28);
+}
+
+.backToBookingBtn i {
+  margin-right: 6px;
+}
+
+.secureBadge {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.18);
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.secureBadge i {
+  margin-right: 6px;
+}
+
+.paymentGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 24px;
+}
+
+.summaryPanel,
+.paymentForm {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 24px;
+}
+
+.summaryLabel {
+  color: rgba(0, 200, 255, 0.6);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.summaryPanel h2,
+.paymentForm h3 {
+  color: #e2e8f0;
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin: 10px 0 18px;
+}
+
+.paymentForm p {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 13px;
+  margin: -8px 0 20px;
+}
+
+.summaryRoute {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: #050510;
+  border: 1px solid rgba(0, 200, 255, 0.12);
+  border-radius: 14px;
+  padding: 14px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.summaryRoute i {
+  color: #00c8ff;
+  transform: rotate(10deg);
+}
+
+.summaryRows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summaryRows div,
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-bottom: 10px;
+}
+
+.summaryRows strong {
+  color: #e2e8f0;
+}
+
+.totalRow {
+  margin-top: 18px;
+  border-bottom: 0;
+  padding-bottom: 0;
+  color: #fff;
+}
+
+.totalRow strong {
+  color: #00c8ff;
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.payField {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+.payField label {
+  color: #00c8ff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.payField input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #e2e8f0;
+  padding: 13px 14px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.payField input::placeholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.payField input:focus {
+  background: rgba(0, 200, 255, 0.06);
+  border-color: rgba(0, 200, 255, 0.55);
+}
+
+.payInputError {
+  border-color: rgba(239, 68, 68, 0.85) !important;
+  background: rgba(239, 68, 68, 0.08) !important;
+}
+
+.payError {
+  color: #f87171;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  margin-top: 2px;
+}
+
+.payGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.cardPreview {
+  position: relative;
+  overflow: hidden;
+  min-height: 160px;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.28), transparent 28%),
+    linear-gradient(135deg, #0f172a 0%, #0369a1 55%, #22c55e 120%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.28);
+}
+
+.cardPreview::after {
+  content: '';
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  right: -70px;
+  bottom: -90px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cardPreviewTop,
+.cardPreviewBottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.cardPreviewTop {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.cardPreviewTop i {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.previewNumber {
+  position: relative;
+  z-index: 2;
+  margin: 34px 0 24px;
+  font-family: 'Courier New', monospace;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.cardPreviewBottom small {
+  display: block;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 1.5px;
+  margin-bottom: 3px;
+}
+
+.cardPreviewBottom strong {
+  display: block;
+  max-width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #fff;
+}
+
+.paymentChecklist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 16px;
+}
+
+.paymentChecklist span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.paymentChecklist .validCheck {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.18);
+}
+
+.payNowBtn {
+  width: 100%;
+  margin-top: 4px;
+  background: linear-gradient(135deg, #22c55e, #0ea5e9);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  padding: 15px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(34, 197, 94, 0.18);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.payNowBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.payNowBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  filter: grayscale(0.35);
+}
+
+.payNowBtn i {
+  margin-right: 8px;
+}
+
+/* ── Confirmation Ticket ── */
+.confirmWrapper {
+  min-height: 100vh;
+  background: #0a0a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 32px;
+}
+
+.confirmTicket {
+  display: flex;
+  max-width: 580px;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: ticketDrop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes ticketDrop {
+  from { opacity: 0; transform: translateY(-40px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ticketLeft {
+  flex: 1;
+  background: #112d4e;
+  color: #fff;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ticketAirline {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.5);
+}
+
+.ticketRoute {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+}
+
+.ticketCode {
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: monospace;
+  letter-spacing: 2px;
+}
+
+.ticketPlane {
+  font-size: 24px;
+  flex: 1;
+  text-align: center;
+}
+
+.ticketDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ticketDetail span {
+  font-size: 9px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+}
+
+.ticketDetail strong {
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+/* Dashed tear line */
+.ticketTear {
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 8px,
+    #e2e8f0 8px,
+    #e2e8f0 14px
+  );
+  position: relative;
+}
+
+/* Circular notches at top and bottom of tear */
+.ticketTear::before,
+.ticketTear::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #0a0a1a;
+}
+.ticketTear::before { top: -9px; }
+.ticketTear::after { bottom: -9px; }
+
+.ticketRight {
+  width: 180px;
+  background: #f9f7f1;
+  padding: 28px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.ticketStatus {
+  font-size: 12px;
+  font-weight: 800;
+  color: #22c55e;
+  letter-spacing: 1px;
+}
+
+.ticketDest {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.3;
+}
+
+.ticketSeat {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.ticketBarcode {
+  width: 100%;
+  height: 50px;
+  background: repeating-linear-gradient(
+    90deg,
+    #0f172a 0px, #0f172a 2px,
+    transparent 2px, transparent 4px,
+    #0f172a 4px, #0f172a 5px,
+    transparent 5px, transparent 8px
+  );
+  border-radius: 2px;
+  margin: 6px 0;
+}
+
+.ticketBarcodeLabel {
+  font-size: 10px;
+  font-family: monospace;
+  color: #94a3b8;
+  letter-spacing: 1px;
+}
+
+/* ── Confirm Actions ── */
+.confirmActions {
+  text-align: center;
+  max-width: 580px;
+  width: 100%;
+}
+
+.confirmMsg {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.confirmBtns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.newBookingBtn {
+  background: rgba(0,200,255,0.15);
+  border: 1px solid rgba(0,200,255,0.3);
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #00c8ff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.newBookingBtn:hover { background: rgba(0,200,255,0.25); }
+
+.homeBtn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.homeBtn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .formGrid { grid-template-columns: 1fr; }
+  .fieldFull { grid-column: span 1; }
+  .kioskScreen { padding: 22px 16px; margin: 24px 12px; }
+  .headerTitle { font-size: 1.5rem; letter-spacing: 3px; }
+  .paymentWrapper { padding: 26px 12px; }
+  .paymentCard { padding: 18px; border-radius: 18px; }
+  .paymentHeader { align-items: flex-start; flex-direction: column; }
+  .paymentGrid { grid-template-columns: 1fr; gap: 18px; }
+  .summaryPanel, .paymentForm { padding: 18px; }
+  .summaryRoute { flex-direction: column; align-items: flex-start; }
+  .payGrid { grid-template-columns: 1fr; }
+  .confirmTicket { flex-direction: column; }
+  .ticketTear { width: 100%; height: 2px; }
+  .ticketTear::before,
+  .ticketTear::after {
+    top: 50%;
+    left: -9px;
+    transform: translateY(-50%);
+  }
+  .ticketTear::after { left: auto; right: -9px; }
+  .ticketRight { width: 100%; }
+}

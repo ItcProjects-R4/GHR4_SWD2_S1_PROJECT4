@@ -1,0 +1,100 @@
+/* ── Page Wrapper ── */
+.pageWrapper {
+  min-height: 100vh;
+  background: #f0f4f8;
+}
+
+/* ── Hero Banner ── */
+.heroBanner {
+  position: relative;
+  height: 55vh;
+  min-height: 320px;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heroBanner::before {
+  content: '✈ 🌴 🏖 🗺 🌊 ⛵ 🏝 ✈';
+  position: absolute;
+  font-size: 60px;
+  opacity: 0.04;
+  letter-spacing: 40px;
+  white-space: nowrap;
+  animation: floatBg 20s linear infinite;
+}
+
+@keyframes floatBg {
+  from { transform: translateX(-10%); }
+  to   { transform: translateX(10%);  }
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.heroEyebrow {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 28px;
+}
+
+/* ── Cards Grid ── */
+.cardsSection {
+  padding: 48px 20px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+/* ── Empty State ── */
+.emptyState {
+  text-align: center;
+  padding: 80px 20px;
+  color: #94a3b8;
+}
+
+.emptyState span {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.emptyState p { font-size: 1.1rem; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .heroTitle  { font-size: 2rem; }
+  .cardsGrid  { grid-template-columns: 1fr; }
+}

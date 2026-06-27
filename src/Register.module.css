@@ -1,0 +1,496 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #1a1a2e;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.register-window {
+  display: flex;
+  width: 900px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.form-section {
+  flex: 1;
+  padding: 40px;
+  background: #f8f9fa;
+}
+
+.form-section h3 {
+  margin-top: 0;
+  color: #112d4e;
+  letter-spacing: 1px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #6c757d;
+}
+
+.input-group input, .input-group select {
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* ========================================= */
+/* تصميم وإضاءة محرك الطائرة (Jet Engine)   */
+/* ========================================= */
+.engine-zone {
+  background: #112d4e;
+  padding: 15px;
+  border-radius: 8px;
+  color: #fff;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.engine-label {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.jet-engine {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: #333;
+  border: 4px solid #555;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.engine-fan {
+  font-size: 28px;
+  transition: transform 0.3s linear;
+}
+
+.engine-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+/* حالات قوة المحرك بناء على الـ Password strength */
+.power-1 .engine-fan { animation: spin 1s linear infinite; }
+.power-1 .engine-glow { background: radial-gradient(circle, rgba(214,52,71,0.8) 0%, transparent 70%); }
+
+.power-2 .engine-fan { animation: spin 0.3s linear infinite; }
+.power-2 .engine-glow { background: radial-gradient(circle, rgba(40,167,69,0.8) 0%, transparent 70%); }
+
+.power-3 .engine-fan { animation: spin 0.05s linear infinite; }
+.power-3 .engine-glow { 
+  background: radial-gradient(circle, rgba(0,123,255,1) 0%, transparent 70%); 
+  box-shadow: inset 0 0 15px #007bff;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.engine-status-text {
+  font-size: 11px;
+}
+
+.fly-btn {
+  width: 100%;
+  background: #d63447;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.toggle-login-text {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 15px;
+  color: #555;
+}
+
+.login-link {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ========================================= */
+/* تصميم كارت الصعود (Live Boarding Pass)   */
+/* ========================================= */
+.ticket-section {
+  flex: 1.1;
+  background: #112d4e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.boarding-pass {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  overflow: hidden;
+  border-left: 8px dashed #d63447; /* شكل التذكرة المقطوعة */
+}
+
+.ticket-header {
+  background: #e3f2fd;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  color: #0d47a1;
+  font-size: 12px;
+}
+
+.ticket-body {
+  padding: 20px;
+}
+
+.ticket-info label, .ticket-sub-details label {
+  font-size: 10px;
+  color: #888;
+  display: block;
+}
+
+.ticket-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2b2d42;
+  margin-top: 5px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.flight-path {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.airport-code {
+  font-size: 24px;
+  font-weight: 900;
+  color: #bbb;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.code-stamped {
+  color: #d63447;
+  transform: scale(1.1);
+}
+
+.plane-icon {
+  font-size: 20px;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.ticket-sub-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.barcode-zone {
+  padding: 15px;
+  background: #eee;
+  display: flex;
+  justify-content: center;
+}
+
+.barcode {
+  width: 80%;
+  height: 30px;
+  background: repeating-linear-gradient(90deg, #000, #000 2px, transparent 2px, transparent 6px);
+}
+
+/* ========================================= */
+/* شريط تحميل مسار الطائرة (Airplane Loader) */
+/* ========================================= */
+/* خلفية تغطي الشاشة بالكامل وتجعل الكارت في المنتصف تماماً */
+.loading-screen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(26, 26, 46, 0.95); /* نفس درجة الخلفية الغامقة للموقع */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* كارت التحميل الأبيض في منتصف الشاشة */
+.loading-card {
+  width: 600px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.loading-title {
+  color: #112d4e;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.loading-subtitle {
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+
+/* حاوية المدرج (الكلمات + الشريط) */
+.runway-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* الكلمات عند الأطراف (Register & Login) */
+.runway-endpoint {
+  font-size: 12px;
+  font-weight: 800;
+  color: #112d4e;
+  letter-spacing: 1.5px;
+  font-family: monospace;
+  background: #e3f2fd;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #90caf9;
+}
+
+/* شريط المدرج المتدرج (شرطة أزرق غامق وشرطة فاتح) */
+.runway-line {
+  position: relative;
+  flex: 1;
+  height: 12px;
+  border-radius: 6px;
+  background-color: #e3f2fd; /* لون الخلفية تحت الشرط */
+  
+  /* خدعة الـ CSS لتوليد شرط أزرق غامق وفاتح بالتناوب */
+  background-image: repeating-linear-gradient(
+    90deg,
+    #0d47a1 0px,  /* أزرق غامق */
+    #0d47a1 15px, /* طول الشرطة الغامقة */
+    #42a5f5 15px, /* أزرق فاتح */
+    #42a5f5 30px  /* طول الشرطة الفاتحة */
+  );
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* حركة الطائرة التفاعلية من الشمال لليمين */
+.airplane-loader {
+  position: absolute;
+  top: -10px; /* لرفع الطائرة لتتوسط الشريط */
+  left: 0;
+  font-size: 26px;
+  transform: rotate(0deg);
+  /* الطائرة تتحرك على طول المسار وتطير في النهاية */
+  animation: airplane-fly-to-login 3s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+
+@keyframes airplane-fly-to-login {
+  0% { 
+    left: 0; 
+    transform: scale(1); 
+  }
+  70% { 
+    left: 85%; 
+    transform: scale(1) translateY(0); 
+  }
+  100% { 
+    left: 95%; 
+    transform: scale(1.3) translateY(-15px); /* الطائرة ترتفع قليلاً عند الوصول لـ Login كأنها تقلع */
+    opacity: 0; 
+  }
+}
+
+/* ── Dark Mode ─────────────────────────────────────────── */
+:global(html[data-theme="dark"]) .register-container {
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.12), transparent 34%),
+    #0f172a;
+}
+
+:global(html[data-theme="dark"]) .register-window {
+  background: #111827;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+}
+
+:global(html[data-theme="dark"]) .form-section {
+  background: #1e293b;
+}
+
+:global(html[data-theme="dark"]) .form-section h3 {
+  color: #f8fafc !important;
+}
+
+:global(html[data-theme="dark"]) .input-group label {
+  color: #94a3b8 !important;
+}
+
+:global(html[data-theme="dark"]) .input-group input,
+:global(html[data-theme="dark"]) .input-group select {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+:global(html[data-theme="dark"]) .input-group input::placeholder {
+  color: #64748b !important;
+}
+
+:global(html[data-theme="dark"]) .toggle-login-text {
+  color: #94a3b8 !important;
+}
+
+:global(html[data-theme="dark"]) .ticket-section {
+  background: #06152b;
+}
+
+:global(html[data-theme="dark"]) .boarding-pass {
+  background: #f8fafc;
+}
+
+:global(html[data-theme="dark"]) .flight-path {
+  background: #e2e8f0;
+}
+
+:global(html[data-theme="dark"]) .barcode-zone {
+  background: #e5e7eb;
+}
+
+:global(html[data-theme="dark"]) .loading-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+:global(html[data-theme="dark"]) .loading-title {
+  color: #f8fafc;
+}
+
+:global(html[data-theme="dark"]) .loading-subtitle {
+  color: #94a3b8;
+}
+
+/* ── Responsive Layout ─────────────────────────────────── */
+@media (max-width: 960px) {
+  .register-window {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .form-section {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    align-items: flex-start;
+    padding: 22px 12px;
+  }
+
+  .register-window {
+    flex-direction: column;
+    max-width: 480px;
+  }
+
+  .form-section {
+    padding: 26px 20px;
+  }
+
+  .ticket-section {
+    min-height: 360px;
+    padding: 24px 16px;
+  }
+
+  .boarding-pass {
+    max-width: 380px;
+  }
+
+  .loading-card {
+    width: calc(100vw - 28px);
+    padding: 28px 18px;
+  }
+
+  .runway-container {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-section {
+    padding: 22px 16px;
+  }
+
+  .ticket-header,
+  .ticket-sub-details {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .flight-path {
+    margin: 18px 0;
+  }
+
+  .airport-code {
+    font-size: 20px;
+  }
+
+  .runway-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .runway-line {
+    width: 100%;
+    min-height: 12px;
+  }
+}

@@ -1,0 +1,50 @@
+/* حاوية الصفحة: الصورة هنا واخدة الخلفية كاملة */
+.fullBgContainer {
+   background-attachment: fixed;
+    background: url('../../assets/error.png') no-repeat center center/cover ;
+    position: relative;
+    animation: spaceShift 10s ease-in-out infinite; /* أنميشن يخلي الخلفية تتحرك سنة صغيرة */
+}
+
+/* كارت زجاجي شفاف ناعم (Glassmorphism) عشان يفصل الكلام عن تفاصيل الكوكب */
+.glassCard {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* رقم الـ 404 بينور أبيض شيك */
+.glowText {
+    color: #ffffff;
+    font-size: 6rem;
+    font-weight: 900;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* زرار الرجوع بالتدريج الذهبي المبهج */
+.backBtn {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    color: white !important;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+}
+
+.backBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(217, 119, 6, 0.5);
+}
+
+/* أنميشن خفيف جداً يحرك الخلفية كأننا في مركبة فضائية */
+@keyframes spaceShift {
+    0%, 100% { background-position: center center; }
+    50% { background-position: 52% 48%; } /* تحرك خفيف جداً */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}

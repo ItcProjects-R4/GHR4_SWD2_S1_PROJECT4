@@ -1,0 +1,474 @@
+/* حاوية الحماية الخارجية لمنع تسريب الـ Styles */
+.mainWrapper {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #f7f3e9;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageContainer {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* القسم الأيسر - الفورم */
+.leftFormSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f7f3e9;
+  z-index: 10;
+}
+
+.formCard {
+  background: #fffdf9;
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid #e3dac9;
+  box-shadow: 0 10px 30px rgba(139, 126, 102, 0.1);
+  width: 100%;
+  max-width: 440px;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.formCardHide {
+  opacity: 0;
+  transform: translateX(-30px);
+  pointer-events: none;
+}
+
+.formTitle {
+  color: #1e4d58;
+  margin: 0 0 8px 0;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.formSubtitle {
+  color: #8c7e69;
+  font-size: 14px;
+  margin: 0 0 25px 0;
+}
+
+.fieldGroup {
+  margin-bottom: 15px;
+}
+
+.fieldGroup input, 
+.fieldGroup textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dcd5c5;
+  background-color: #fdfcf7;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #2c3e50;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.fieldGroup input:focus, 
+.fieldGroup textarea:focus {
+  border-color: #317a8a;
+}
+
+.fieldGroup textarea {
+  height: 120px;
+  resize: none;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 14px;
+  background-color: #235966;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+  background-color: #173d47;
+}
+
+/* القسم الأيمن - البحر */
+.rightSeaSection {
+  flex: 1.2;
+  position: relative;
+  height: 100%;
+}
+
+.seaWater {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #3a8e9e 0%, #1a4b57 40%, #0d2830 100%);
+  overflow: hidden;
+}
+
+/* طبقات الأمواج */
+.oceanWave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 160px;
+  background-repeat: repeat-x;
+  background-position: 0 bottom;
+}
+
+.waveLayerBack {
+  bottom: 25vh;
+  opacity: 0.4;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C150,90 350,30 500,60 C650,90 850,30 1000,60 C1150,90 1300,60 1400,60 L1400,120 L0,120 Z" fill="%232b7382"/></svg>');
+  animation: waveRun 16s linear infinite;
+}
+
+.waveLayerMiddle {
+  bottom: 20vh;
+  opacity: 0.7;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,50 C150,20 350,80 500,50 C650,20 850,80 1000,50 C1150,20 1300,50 1400,50 L1400,120 L0,120 Z" fill="%23215a66"/></svg>');
+  animation: waveRunRev 11s linear infinite;
+}
+
+.waveLayerFront {
+  bottom: 15vh;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,40 C150,80 350,20 500,40 C650,60 850,20 1000,40 C1150,60 1300,40 1400,40 L1400,120 L0,120 Z" fill="%2317424c"/></svg>');
+  animation: waveRun 8s linear infinite;
+  z-index: 5;
+}
+
+@keyframes waveRun {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes waveRunRev {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* حركة طفو الزجاجة */
+.bottleShipment {
+  position: absolute;
+  bottom: 24vh;
+  left: 35%;
+  z-index: 3;
+  animation: seaFloating 4s ease-in-out infinite;
+  transition: all 3.5s cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+@keyframes seaFloating {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+
+/* تصميم الزجاجة الخضراء */
+.glassBottleGreen {
+  position: relative;
+  width: 95px;
+  height: 210px;
+}
+
+.bottleTopNeck {
+  position: absolute;
+  top: 0;
+  left: 34px;
+  width: 27px;
+  height: 50px;
+  background: linear-gradient(90deg, #1e463a 0%, #2d6b59 40%, #16332a 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+}
+
+.woodenPlug {
+  position: absolute;
+  top: -10px;
+  left: 4px;
+  width: 16px;
+  height: 14px;
+  background-color: #b08d57;
+  border-radius: 2px;
+}
+
+.bottleMainBody {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 95px;
+  height: 162px;
+  background: linear-gradient(135deg, rgba(39, 94, 78, 0.8) 0%, rgba(20, 54, 44, 0.9) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px 20px 40px 40px;
+  backdrop-filter: blur(1px);
+  padding: 10px;
+  box-shadow: inset -5px -5px 15px rgba(0,0,0,0.3), inset 5px 5px 15px rgba(255,255,255,0.15);
+}
+
+.lightReflection {
+  position: absolute;
+  top: 55px;
+  left: 10px;
+  width: 10px;
+  height: 130px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* الورقة بالداخل */
+.parchmentPaper {
+  width: 100%;
+  height: 100%;
+  background-color: #f1e4c3;
+  border-radius: 10px;
+  padding: 8px;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+  transform-origin: center bottom;
+}
+
+.parchmentText {
+  color: #4a3b22;
+  font-family: serif;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.authorName {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 4px;
+  border-bottom: 1px dashed rgba(74, 59, 34, 0.2);
+}
+
+.letterBody {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* أنيميشن كبسة الإرسال */
+.paperRolledTightly {
+  transform: scaleY(0.1) scaleX(0.6) translateY(350%);
+  background-color: #d1b884;
+}
+
+.bottleFlyAway {
+  animation: none;
+  transform: translate(350px, -120px) scale(0.05);
+  opacity: 0;
+}
+
+.darkSeaBase {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 16vh;
+  background-color: #17424c;
+  z-index: 4;
+}
+
+/*  إشعار النجاح المنبثقة  Toast
+*/
+.toastBox {
+  position: fixed; /* تم تحويلها لـ fixed عشان تنفصل عن الـ Layout */
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #17424c;
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999; /* رقم عالي جداً لتظهر فوق أي حاجة في الموقع */
+  width: 90%;
+  max-width: 380px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), top 0.5s ease;
+  pointer-events: none;
+  text-align: left;
+}
+
+.toastBoxShow {
+  top: 25px;
+}
+
+.toastTitle {
+  margin: 0 0 2px 0;
+  font-size: 14px;
+  color: #5ec7db;
+}
+
+.toastText {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.toastIcon {
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px;
+  border-radius: 50%;
+}
+
+/* ── Dark Mode ─────────────────────────────────────────── */
+:global(html[data-theme="dark"]) .mainWrapper {
+  background: #0f172a;
+}
+
+:global(html[data-theme="dark"]) .leftFormSection {
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.12), transparent 34%),
+    linear-gradient(180deg, #0f172a 0%, #111827 100%);
+}
+
+:global(html[data-theme="dark"]) .formCard {
+  background: rgba(30, 41, 59, 0.96);
+  border-color: #334155;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+:global(html[data-theme="dark"]) .formTitle {
+  color: #f8fafc;
+  text-shadow: none;
+}
+
+:global(html[data-theme="dark"]) .formSubtitle {
+  color: #94a3b8;
+}
+
+:global(html[data-theme="dark"]) .fieldGroup input,
+:global(html[data-theme="dark"]) .fieldGroup textarea {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+:global(html[data-theme="dark"]) .fieldGroup input::placeholder,
+:global(html[data-theme="dark"]) .fieldGroup textarea::placeholder {
+  color: #64748b !important;
+  opacity: 1;
+}
+
+:global(html[data-theme="dark"]) .fieldGroup input:focus,
+:global(html[data-theme="dark"]) .fieldGroup textarea:focus {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+}
+
+:global(html[data-theme="dark"]) .submitButton {
+  background: linear-gradient(135deg, #0e7490, #0369a1);
+  box-shadow: 0 10px 24px rgba(2, 132, 199, 0.18);
+}
+
+:global(html[data-theme="dark"]) .submitButton:hover {
+  background: linear-gradient(135deg, #0891b2, #0284c7);
+}
+
+:global(html[data-theme="dark"]) .seaWater {
+  background: linear-gradient(180deg, #164e63 0%, #0f3a46 42%, #061820 100%);
+}
+
+:global(html[data-theme="dark"]) .toastBox {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+:global(html[data-theme="dark"]) .toastTitle {
+  color: #38bdf8;
+}
+
+:global(html[data-theme="dark"]) .toastText {
+  color: #cbd5e1;
+}
+
+/* ── Responsive Layout ─────────────────────────────────── */
+@media (max-width: 900px) {
+  .mainWrapper {
+    overflow: visible;
+  }
+
+  .pageContainer {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .leftFormSection {
+    min-height: auto;
+    padding: 32px 18px;
+  }
+
+  .formCard {
+    max-width: 560px;
+  }
+
+  .rightSeaSection {
+    flex: none;
+    height: 460px;
+    width: 100%;
+  }
+
+  .bottleShipment {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @keyframes seaFloating {
+    0%, 100% { transform: translateX(-50%) translateY(0) rotate(-4deg); }
+    50% { transform: translateX(-50%) translateY(-10px) rotate(4deg); }
+  }
+}
+
+@media (max-width: 576px) {
+  .leftFormSection {
+    padding: 24px 12px;
+  }
+
+  .formCard {
+    padding: 26px 18px;
+    border-radius: 14px;
+  }
+
+  .formTitle {
+    font-size: 22px;
+  }
+
+  .rightSeaSection {
+    height: 360px;
+  }
+
+  .oceanWave {
+    height: 120px;
+  }
+
+  .bottleShipment {
+    bottom: 22vh;
+    transform: translateX(-50%) scale(0.82);
+  }
+
+  @keyframes seaFloating {
+    0%, 100% { transform: translateX(-50%) scale(0.82) translateY(0) rotate(-4deg); }
+    50% { transform: translateX(-50%) scale(0.82) translateY(-10px) rotate(4deg); }
+  }
+
+  .bottleFlyAway {
+    transform: translate(180px, -90px) scale(0.05);
+  }
+}

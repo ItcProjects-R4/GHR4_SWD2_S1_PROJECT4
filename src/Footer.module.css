@@ -1,0 +1,78 @@
+/* حاوية الفوتر: خلفية هادية جداً ومساحة Padding مريحة للعين */
+.footerContainer {
+    background-color: #f8fafc;
+    border-top: 1px solid #f1f5f9;
+    padding: 60px 0 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* اسم البراند في الفوتر */
+.footerBrand {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 1.2rem;
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+}
+
+/* الكلام والوصوف بلون رمادي داكن ناعم */
+.footerDesc {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* عناوين الأعمدة الجانبية */
+.columnTitle {
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+/* الروابط: بتتحول للون أزرق البراند عند الهوفر بنعومة */
+.footerLink {
+    color: #475569;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    display: inline-block;
+}
+
+.footerLink:hover {
+    color: #0284c7;
+    transform: translateX(3px); /* حركة زحزحة بسيطة شيك */
+}
+
+/* أزرار السوشيال ميديا الدائرية النظيفة */
+.socialLink {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.socialLink:hover {
+    background-color: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+    transform: translateY(-2px);
+}
+
+/* البار السفلي الخاص بالحقوق */
+.bottomBar {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    color: #94a3b8;
+}
