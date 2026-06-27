@@ -1,16 +1,32 @@
-# React + Vite
+Travel Explorer - Dynamic Travel & Booking Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ Project Demo Video:
+Experience Travel Explorer in action! Watch our comprehensive walkthrough video showcasing the key features, dynamic boarding pass, secure booking process, and much more:
+👉 **[Watch the Walkthrough Video on Google Drive](https://drive.google.com/file/d/1ECLqTVRFtIMFEkIaO5VpCz6_lXmwh4GV/view?usp=drive_link)**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+ Team Members:
+This project was developed through the collaborative efforts of our team:
+* Malk Khaled Moner Saad
+* Mohamed Wageeh Ahmed Elshorbagy
+* Esraa Ashraf Mostafa Elmorshdy
+* Rahaf Adel Mohamed Fahmi
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+ Tech Stack & Features:
+* Frontend Framework: React (Vite)
+* Routing: React Router DOM
+* State Management: React Hooks (useState, useEffect, Context API)
+* Dynamic Dark Mode: Seamlessly switch the entire website's theme with a single click.
+* Live Boarding Pass: Real-time preview of ticket data during registration.
+* Secure Mock Stripe Payment: An interactive interface simulating the Stripe gateway for a full booking cycle.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ Installation & Running Locally:
+To run this project on your local machine, follow these steps:
+```bash
+npm install
+npm run dev
